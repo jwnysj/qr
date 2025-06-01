@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Account Number</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 100px; }
+    .box { border: 1px solid #ccc; padding: 20px; border-radius: 10px; display: inline-block; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>엄마 계좌번호 복사</h2>
+    <p id="account">토스뱅크 1000-0698-0618<br>임영옥</p>
+    <button onclick="copyToClipboard()">📋 복사하기</button>
+  </div>
+
+  <script>
+    function copyToClipboard() {
+      const text = "토스뱅크 1000-0698-0618\n임영옥";
+      navigator.clipboard.writeText(text)
+        .then(() => alert("✅ 클립보드에 복사 완료!"))
+        .catch(err => {
+          alert("❌ 복사 실패! 크롬 브라우저에서 다시 시도해보세요.");
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
