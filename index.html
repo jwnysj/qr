@@ -2,30 +2,79 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Account Number</title>
+  <title>계좌 번호 공유</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 100px; }
-    .box { border: 1px solid #ccc; padding: 20px; border-radius: 10px; display: inline-block; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      background: #f9f9f9;
+    }
+    .copy-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 16px;
+      padding: 30px 20px;
+      display: inline-block;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .bank {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2b6cb0;
+      margin-bottom: 20px;
+    }
+    .account {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .name {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    button {
+      font-size: 1.4rem;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      background: #2b6cb0;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1a4c80;
+    }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h2>계좌번호 공유</h2>
-    <p id="account">토스뱅크 1000-0698-0618<br>임영옥</p>
+  <div class="copy-box">
+    <div class="bank">토스뱅크</div>
+    <div class="account">1000-0698-0618</div>
+    <div class="name">임영옥</div>
     <button onclick="copyToClipboard()">📋 복사하기</button>
+    <p id="status" style="margin-top:20px;font-size:1rem;color:green;"></p>
   </div>
 
   <script>
     function copyToClipboard() {
       const text = "토스뱅크 1000-0698-0618\n임영옥";
       navigator.clipboard.writeText(text)
-        .then(() => alert("✅ 클립보드에 복사 완료!"))
-        .catch(err => {
-          alert("❌ 복사 실패! 크롬 브라우저에서 다시 시도해보세요.");
-          console.error(err);
+        .then(() => {
+          document.getElementById("status").innerText = "✅ 복사 완료!";
+        })
+        .catch(() => {
+          document.getElementById("status").innerText = "❌ 복사 실패! 크롬 앱에서 다시 시도해보세요.";
         });
     }
+
+    // 자동 복사 시도
+    window.onload = () => {
+      copyToClipboard();
+    };
   </script>
 </body>
 </html>
